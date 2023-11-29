@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-color: black;
+        }
+        .main {
+            height: 600px;
+            width: 400px;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            cursor: none;
+            overflow: hidden;
+        }
+        .main img{
+            border-radius: 10px;
+        }
+
+        .move {
+            border-radius: 50%;
+            width: 140px;
+            height: 140px;
+            position: absolute;
+            top: -70px;
+            left: -70px;
+            background: url(img/photo-1490761668535-35497054764d.webp) no-repeat;
+            background-size: 860%;
+            background-position: 0 0;
+            border: 6px solid #F2ACC2;
+            transform: scale(0);
+            transition: transform 1s;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="img">
+            <img src="./img/photo-1490761668535-35497054764d.webp" alt="" width="100%">
+        </div>
+        <div class="move">
+
+        </div>
+    </div>
+
+    <script>
+        var main = document.querySelector(".main")
+        var move = document.querySelector(".move")
+        main.onmousemove = function (ele) {
+            move.style.opacity = 1
+            move.style.transform = "scale(1.15)";
+            var x = ele.pageX - main.offsetLeft
+            var y = ele.pageY - main.offsetTop
+            move.style.left = (x - move.clientWidth / 2) + "px"
+            move.style.top = (y - move.clientWidth / 2) + "px"
+            move.style.backgroundPositionX = (x * -3) + 70 + "px"
+            move.style.backgroundPositionY = (y * -3) + 70 + "px"
+        }
+        main.onmouseout = function () {
+            move.style.transform = "scale(0)";
+            setTimeout(function () {
+                move.style.opacity = 0
+            }, 1000)
+        }
+    </script>
+</body>
+
+</html>
